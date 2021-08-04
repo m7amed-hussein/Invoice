@@ -92,6 +92,7 @@ namespace Invoice
 
             printpage.Show();
 
+            invoice.InvoideId++;
 
             clearinvoice();
         }
@@ -124,7 +125,13 @@ namespace Invoice
                 return false;
             }
 
-            //TODO: Some validation for the phone number but it depends on the kind 
+            int phone;
+            int.TryParse(CustommerPhone.Text, out phone);
+            if(phone ==0)
+            {
+                MessageBox.Show("أملئ خانه الهاتف بقيمه صحيحه من فضلك");
+                return false;
+            }
 
             return true;
             
@@ -148,7 +155,8 @@ namespace Invoice
             CustommerAddress.Clear();
             InvoiceGrid.Items.Clear();
             id.Clear();
-
+            invoiceid.Text = invoice.InvoideId.ToString();
+            invoice.All = 0;
             clearInvoiceData();
         }
 
